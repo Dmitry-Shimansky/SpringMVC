@@ -11,7 +11,7 @@ import ru.shimansky.springcourse.models.Person;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private PersonDAO personDAO;
+    private final PersonDAO personDAO;
 
     @Autowired
     public PeopleController(PersonDAO personDAO) {
@@ -28,10 +28,8 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        //Получим одного человека по id из DAO и передадим на отображение в представление
-
         model.addAttribute("person", personDAO.show(id));
-        return "poeple/show";
+        return "people/show";
     }
 
     @GetMapping("/new")
